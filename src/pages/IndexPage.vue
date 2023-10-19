@@ -1,17 +1,7 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
-  </q-page>
+  <q-page class="padding_cero"> </q-page>
 </template>
 
-<script>
-import { defineComponent } from 'vue'
+<script setup></script>
 
-export default defineComponent({
-  name: 'IndexPage'
-})
-</script>
+<style scoped></style>

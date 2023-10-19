@@ -1,6 +1,6 @@
-# VAGUADA (vaguada)
+# FULL (full)
 
-LEGO REFACTORED PAGE
+All in one social media
 
 ## Install the dependencies
 ```bash

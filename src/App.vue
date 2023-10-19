@@ -1,11 +1,9 @@
+<script setup>
+import { useRecaptchaProvider } from 'vue-recaptcha';
+
+useRecaptchaProvider();
+</script>
+
 <template>
   <router-view />
 </template>
-
-<script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  name: 'App'
-})
-</script>
