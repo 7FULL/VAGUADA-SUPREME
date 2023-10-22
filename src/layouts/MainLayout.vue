@@ -17,7 +17,7 @@
           dense
           placeholder="Buscar ..."
           v-model="busqueda"
-          style="padding-right: 41%"
+          style="padding-right: 33%"
         >
           <template v-slot:append>
             <q-icon name="search" class="text-white" />
@@ -25,12 +25,45 @@
         </q-input>
 
         <q-btn
+          v-if="isLogged"
           dense
           flat
           round
           icon="fa-solid fa-basket-shopping"
           @click="toggleRightDrawer"
         />
+
+        <div class="avatar-container">
+          <div v-if="isLogged">
+            <q-btn
+              v-if="userStore.userData.profile != null"
+              round
+              @click="viewProfile"
+            >
+              <q-avatar>
+                <img :src="userStore.userData.profile" alt="User Avatar 4" />
+              </q-avatar>
+              <q-tooltip class="bg-green">Ver perfil</q-tooltip>
+            </q-btn>
+            <q-btn v-else round @click="viewProfile">
+              <q-avatar>
+                <img
+                  src="../assets/img/logoUserDefault.png"
+                  alt="User Avatar2"
+                />
+              </q-avatar>
+              <q-tooltip class="bg-green">Ver perfil</q-tooltip>
+            </q-btn>
+          </div>
+          <div v-else>
+            <q-btn
+              color="primary"
+              icon-right="login"
+              label="Iniciar sesion"
+              @click="openModal"
+            />
+          </div>
+        </div>
       </q-toolbar>
     </q-header>
 

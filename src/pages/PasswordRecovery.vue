@@ -113,6 +113,8 @@ const confirm = (e) => {
         if (data.status == 200) {
           console.log(data);
 
+          console.log(confirmPasswordData.value);
+
           confirmPasswordData.value.oldPassword = "";
           confirmPasswordData.value.confirmPassword = "";
           confirmPasswordData.value.newPassword = "";

@@ -247,12 +247,20 @@
   font-size: 2.75rem;
 }
 
+.ml-xs {
+  margin-left: 5%;
+}
+
 .absolute {
   position: absolute;
 }
 
 .ml-xl {
   margin-left: 100%;
+}
+
+.ml-3 {
+  margin-left: 3%;
 }
 
 .mr-xl {

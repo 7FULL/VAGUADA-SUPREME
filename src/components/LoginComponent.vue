@@ -158,6 +158,7 @@
     :persistent="true"
     :cancel="false"
     :input="false"
+    @closed="restorePassword = false"
   ></PopUp>
 </template>
 
