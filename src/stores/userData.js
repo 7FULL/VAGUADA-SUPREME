@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 
-export const userDataStore = defineStore("userDataStore", () => {
+export const userDataStore =
+  defineStore("userDataStore", () => {
   let logged = false;
 
   const userData = {
@@ -11,6 +12,12 @@ export const userDataStore = defineStore("userDataStore", () => {
     emailVerified: "",
     description: "",
     streamKey: "",
+  };
+
+  const shopCar = [];
+
+  const addProduct = (product) => {
+    shopCar.push(product);
   };
 
   const resetData = () => {
@@ -28,5 +35,7 @@ export const userDataStore = defineStore("userDataStore", () => {
     logged,
     userData,
     resetData,
+    shopCar,
+    addProduct,
   };
 });

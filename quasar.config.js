@@ -101,11 +101,10 @@ module.exports = configure(function (/* ctx */) {
 
           dark: "#1d1d1d",
           "dark-page": "#121212",
-
           positive: "#21BA45",
           negative: "#C10015",
           info: "#31CCEC",
-          warning: "#F2C037",
+          warning: "#fd8024",
         },
       },
 
@@ -123,9 +122,9 @@ module.exports = configure(function (/* ctx */) {
       plugins: ["Dialog", "Notify"],
     },
 
-    // animations: 'all', // --- includes all animations
+    //animations: 'all', // --- includes all animations
     // https://v2.quasar.dev/options/animations
-    animations: [],
+    animations: ['bounceIn'],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#property-sourcefiles
     // sourceFiles: {

@@ -42,7 +42,7 @@
                   class="flex"
                 />
               </q-item>
-              <GoogleLogin :callback="googleLogged" />
+              <GoogleLogin :callback="googleLogged" class="xclip" />
               <q-card-actions>
                 <q-btn
                   color="primary"
@@ -183,7 +183,7 @@ const userStore = userDataStore();
 const restorePassword = ref(false);
 
 const restorePasswordPopUp = () => {
-  if (loginData.value.username == "") {
+  if (loginData.value.username === "") {
     showNotif(
       "Debes introducir un nombre de usuario o correo electrónico",
       "red-5"
@@ -393,7 +393,7 @@ const logged = async (name = "") => {
           userData.value.profile = data.result.profile;
 
           await fetch(
-            "http://127.0.0.1:5000/api/users/profile/" + userData.value.name
+            "http://127.0.0.1:5000/api/users/profile/" + userData.value.email
           )
             .then((response) => response.blob())
             .then((blob) => {

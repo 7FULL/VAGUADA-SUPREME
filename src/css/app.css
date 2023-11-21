@@ -283,6 +283,40 @@
   display: block;
 }
 
+.q-page {
+  overflow-x: hidden;
+}
+
+.q-header {
+  overflow-y: hidden;
+}
+
+.xnoScroll {
+  overflow-x: hidden;
+}
+
+.ynoScroll {
+  overflow-y: hidden;
+}
+
+.yclip {
+  overflow-y: clip !important;
+}
+
+.xclip {
+  overflow-x: clip !important;
+}
+
+.hoverButton {
+  background-color: white;
+}
+
+.grid {
+  display: grid;
+  grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+  grid-column-gap: 2%;
+}
+
 textarea {
   resize: none;
 }

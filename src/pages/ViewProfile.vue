@@ -127,7 +127,7 @@
     <q-dialog v-model="isOpenPass">
       <q-card>
         <q-card-section>
-          <h3>Cambio de Contraseña</h3>
+          <h6>Cambio de Contraseña</h6>
           <q-form @submit="changePassword">
             <q-input
               type="password"
@@ -176,7 +176,7 @@
     <q-dialog v-model="isOpenMail">
       <q-card>
         <q-card-section>
-          <h3>Cambio de Email</h3>
+          <h6>Cambio de Email</h6>
           <q-form @submit="changeEmail">
             <q-input
               type="password"
@@ -216,9 +216,9 @@
       </q-card>
     </q-dialog>
     <q-dialog v-model="isOpenPhone">
-      <q-card>
+      <q-card class="wsm">
         <q-card-section>
-          <h3>Cambio de Teléfono</h3>
+          <h6>Cambio de Teléfono</h6>
           <q-form @submit="changePhone">
             <q-input
               type="password"
@@ -260,7 +260,7 @@
     <q-dialog v-model="changingPassword">
       <q-card>
         <q-card-section>
-          <h3>Eliminacion de cuenta</h3>
+          <h6>Eliminacion de cuenta</h6>
           <q-form @submit="confirmPassword">
             <q-input
               type="password"
@@ -573,6 +573,7 @@ const editProfile = async () => {
       )
         .then((response) => response.json())
         .then((data) => {
+          console.log(data)
           if (data.status != 200) {
             //console.log("Foto de perfil actualizada");
             if (
@@ -590,7 +591,7 @@ const editProfile = async () => {
             }
           } else {
             aux2 = true;
-            shoqNotif("Foto de perfil actualizada");
+            showNotif("Foto de perfil actualizada");
           }
         })
         .catch((exception) => {
