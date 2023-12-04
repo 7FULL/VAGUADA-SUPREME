@@ -25,6 +25,18 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/payment",
+    component: () => import("layouts/SimpleBarLayout.vue"),
+    children:[
+      //Formulario de compra
+      {
+        name: "form",
+        path: "",
+        component: () => import("pages/FinalizarCompra.vue"),
+      },
+    ]
+  }
 ];
 
 export default routes;

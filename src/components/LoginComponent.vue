@@ -220,7 +220,7 @@ const restorePasswordPopUp = () => {
 };
 
 onMounted(() => {
-  if (localStorage.getItem("username")) {
+  if (localStorage.getItem("username") && !userStore.logged) {
     let name = localStorage.getItem("username");
 
     // Para que siga recordando
@@ -398,6 +398,8 @@ const logged = async (name = "") => {
             .then((response) => response.blob())
             .then((blob) => {
               // Crear una URL de objeto para la imagen
+
+              //TODO: Cambiar a q file
               const imageUrl = URL.createObjectURL(blob);
 
               aux = imageUrl;

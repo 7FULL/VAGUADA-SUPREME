@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 
-export const userDataStore =
-  defineStore("userDataStore", () => {
+export const userDataStore = defineStore("userDataStore", () => {
   let logged = false;
 
   const userData = {
@@ -16,9 +15,31 @@ export const userDataStore =
 
   const shopCar = [];
 
-  const addProduct = (product) => {
-    shopCar.push(product);
-  };
+  const plusProduct = (product) => {
+    let precio = product.precio / product.cantidad;
+
+    product.cantidad++;
+
+    product.precio += Number(precio);
+
+    //Redondeamos el precio
+    product.precio = Number(product.precio.toFixed(2));
+
+    console.log(product.precio)
+    console.log(precio)
+  }
+
+  const minusProduct = (product) => {
+    //Calculamos el precio del producto
+    let precio = product.precio / product.cantidad;
+
+    product.cantidad--;
+
+    product.precio -= precio;
+
+    //Redondeamos el precio
+    product.precio = product.precio.toFixed(2);
+  }
 
   const resetData = () => {
     userData.value.profile = "src/assets/img/logoUserDefault.png";
@@ -36,6 +57,7 @@ export const userDataStore =
     userData,
     resetData,
     shopCar,
-    addProduct,
+    plusProduct,
+    minusProduct,
   };
 });

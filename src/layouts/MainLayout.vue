@@ -32,19 +32,34 @@
           icon="fa-solid fa-basket-shopping"
           @click="toggleRightDrawer"
         >
-          <!-- TODO: Cambiar el icono para que tenga un número encima con la cantidad de productos que tiene -->
           <transition
             v-if="transicion"
             appear
-            enter-active-class="animated bounceIn">
-            <q-avatar v-if="productos.length>0" class="absolute all-pointer-events" size="20px" name="info" color="red" style="top: 4%; left: 45%">{{ productos.length }}
+            enter-active-class="animated bounceIn"
+          >
+            <q-avatar
+              v-if="productos.length > 0"
+              class="absolute all-pointer-events"
+              size="20px"
+              name="info"
+              color="red"
+              style="top: 4%; left: 45%"
+              >{{ productos.length }}
             </q-avatar>
           </transition>
           <transition
             v-if="!transicion"
             appear
-            enter-active-class="animated bounceIn">
-            <q-avatar v-if="productos.length>0" class="absolute all-pointer-events" size="20px" name="info" color="red" style="top: 4%; left: 45%">{{ productos.length }}
+            enter-active-class="animated bounceIn"
+          >
+            <q-avatar
+              v-if="productos.length > 0"
+              class="absolute all-pointer-events"
+              size="20px"
+              name="info"
+              color="red"
+              style="top: 4%; left: 45%"
+              >{{ productos.length }}
             </q-avatar>
           </transition>
           <q-tooltip class="bg-green">Carrito de la compra</q-tooltip>
@@ -158,19 +173,23 @@
             </q-item-label>
           </q-item-section>
         </q-item>
-        <q-item>
-          <q-item-section>
-            <q-btn
-              color="warning"
-              label="Finalizar compra"
-              icon-right="shopping_cart"
-              @click="finishPurchase"
-              class="q-ma-sm text-black"
-            >
-              <q-tooltip class="bg-warning text-black">Finalizar compra</q-tooltip>
-            </q-btn>
-          </q-item-section>
-        </q-item>
+        <RouterLink to="/payment">
+          <q-item>
+            <q-item-section>
+              <q-btn
+                color="warning"
+                label="Finalizar compra"
+                icon-right="shopping_cart"
+                @click="finishPurchase"
+                class="q-ma-sm text-black"
+              >
+                <q-tooltip class="bg-warning text-black"
+                >Finalizar compra</q-tooltip
+                >
+              </q-btn>
+            </q-item-section>
+          </q-item>
+        </RouterLink>
       </q-list>
     </q-drawer>
 
@@ -181,14 +200,14 @@
     ></login>
 
     <q-page-container style="padding-top: 14px">
-      <router-view @added="added"/>
+      <router-view @added="added" />
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup>
 import login from "../components/LoginComponent.vue";
-import {computed, ref, watch, watchEffect} from "vue";
+import { computed, ref } from "vue";
 import EssentialLink from "components/EssentialLink.vue";
 import { RouterLink, useRouter } from "vue-router";
 import { userDataStore } from "stores/userData";
@@ -250,9 +269,12 @@ const products = computed(() => productos.value);
 
 const busqueda = ref("");
 
-const texto = ref("")
+const texto = ref("");
 
-const transicion = ref(true)
+const transicion = ref(true);
+
+//Para que se actualice el carrito de la compra
+productos.value = userStore.shopCar;
 
 const calcularTotal = () => {
   let aux = 0;
@@ -264,17 +286,23 @@ const calcularTotal = () => {
 
   texto.value = aux.toFixed(2) + "€";
 
-  transicion.value = !transicion.value
-}
+  transicion.value = !transicion.value;
+};
 
-function added(producto){
-  productos.value.push(producto)
+function added(product) {
 
-  calcularTotal()
+    //Añadimos un atributo cantidad al producto
+    product.cantidad = 1;
+
+    //Parseamos el precio a number
+    product.precio = Number(product.precio);
+
+    userStore.shopCar.push(product);
+
+  calcularTotal();
 }
 
 const finishPurchase = () => {
-  userStore.shopCar = [];
   router.push({ name: "home" });
 };
 
@@ -351,5 +379,3 @@ const viewProfile = () => {
   //emit("profile");
 };
 </script>
-
-<style></style>
