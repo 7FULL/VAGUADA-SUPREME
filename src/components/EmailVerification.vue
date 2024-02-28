@@ -80,6 +80,11 @@ const error = ref({
   message: "",
 });
 
+const clearError = () => {
+  error.value.type = 0;
+  error.value.message = "";
+}
+
 const checkToken = (userInput) => {
   userInput = {
     token: userInput,

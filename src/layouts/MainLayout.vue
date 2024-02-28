@@ -18,6 +18,7 @@
           placeholder="Buscar ..."
           v-model="busqueda"
           style="padding-right: 33%"
+          @keyup.enter="busquedaDone"
         >
           <template v-slot:append>
             <q-icon name="search" class="text-white" />
@@ -114,7 +115,7 @@
           icon-right="logout"
           @click="closeSession"
           class="q-ml-sm"
-          style="width: 95%; margin-top: 124%"
+          style="width: 95%; margin-top: 162%"
         >
           <q-tooltip class="bg-red">Cerrar sesión</q-tooltip>
         </q-btn>
@@ -200,17 +201,18 @@
     ></login>
 
     <q-page-container style="padding-top: 14px">
-      <router-view @added="added" />
+      <router-view @added="added"/>
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup>
 import login from "../components/LoginComponent.vue";
-import { computed, ref } from "vue";
+import {computed, ref, watch} from "vue";
 import EssentialLink from "components/EssentialLink.vue";
 import { RouterLink, useRouter } from "vue-router";
 import { userDataStore } from "stores/userData";
+
 
 const userStore = userDataStore();
 
@@ -240,22 +242,10 @@ const linksList = [
     link: "/",
   },
   {
-    title: "Historia",
-    caption: "Conoce nuestra historia",
-    icon: "history_edu",
-    link: "/dms",
-  },
-  {
     title: "Donde estamos",
     caption: "¿Como llegar a nuestras tiendas?",
     icon: "map",
-    link: "/map",
-  },
-  {
-    title: "Ayuda",
-    caption: "¿Necesitas ayuda?",
-    icon: "help",
-    link: "/streamings",
+    link: "/donde",
   },
 ];
 
@@ -297,7 +287,13 @@ function added(product) {
     //Parseamos el precio a number
     product.precio = Number(product.precio);
 
-    userStore.shopCar.push(product);
+    //Añadimos el producto al carrito
+    //Si el producto ya está en el carrito, añadimos 1 a la cantidad
+    if (userStore.shopCar.includes(product)) {
+      userStore.plusProduct(product);
+    } else {
+      userStore.shopCar.push(product);
+    }
 
   calcularTotal();
 }
@@ -377,5 +373,18 @@ const logged = () => {
 const viewProfile = () => {
   router.push({ name: "viewProfile" });
   //emit("profile");
+};
+
+
+
+//Si cambia el valor de la busqueda se actualiza la store
+watch(busqueda, () => {
+  userStore.search.search = busqueda.value;
+});
+
+
+const busquedaDone = () => {
+  //Editamos la busqueda en  la store
+  //userStore.search.search = busqueda.value;
 };
 </script>

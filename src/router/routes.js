@@ -18,6 +18,11 @@ const routes = [
         path: "/recoveryPassword/:token",
         component: () => import("pages/PasswordRecovery.vue"),
       },
+      {
+        name: "donde",
+        path: "/donde",
+        component: () => import("pages/DondeEstamos.vue"),
+      },
       //Para los 404
       {
         path: "/:catchAll(.*)*",

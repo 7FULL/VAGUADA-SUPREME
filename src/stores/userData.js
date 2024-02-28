@@ -24,9 +24,6 @@ export const userDataStore = defineStore("userDataStore", () => {
 
     //Redondeamos el precio
     product.precio = Number(product.precio.toFixed(2));
-
-    console.log(product.precio)
-    console.log(precio)
   }
 
   const minusProduct = (product) => {
@@ -39,6 +36,13 @@ export const userDataStore = defineStore("userDataStore", () => {
 
     //Redondeamos el precio
     product.precio = product.precio.toFixed(2);
+  }
+
+  //Esto se utiliza para poder acceder a lo que el usuario esta buscando
+  //en el buscador
+
+  const search = {
+    search: "",
   }
 
   const resetData = () => {
@@ -59,5 +63,6 @@ export const userDataStore = defineStore("userDataStore", () => {
     shopCar,
     plusProduct,
     minusProduct,
+    search,
   };
 });

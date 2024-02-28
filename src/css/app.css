@@ -11,6 +11,10 @@
   background-color: #ffcf00;
 }
 
+.line-trough{
+  text-decoration: line-through;
+}
+
 .w4 {
   width: 4%;
 }
